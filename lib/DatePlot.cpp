@@ -90,6 +90,9 @@ void DatePlot::setData (BarData *l)
     case BarData::MonthlyBar:
       getMonthlyDate();
       break;
+  case BarData::SeasonBar:
+      getSeasonDate();
+      break;
     default:
       getDailyDate();
       break;
@@ -386,6 +389,41 @@ void DatePlot::getMonthlyDate ()
 
       xGrid.resize(xGrid.size() + 1);
       xGrid[xGrid.size() - 1] = loop;
+    }
+
+    dateList.append(item);
+    loop++;
+  }
+}
+
+void DatePlot::getSeasonDate ()
+{
+  xGrid.resize(0);
+  int loop = 0;
+  QDateTime dt;
+  data->getDate(loop, dt);
+  QDate oldYear = dt.date();
+
+  while(loop < (int) data->count())
+  {
+    TickItem *item = new TickItem;
+    item->flag = 0;
+
+    data->getDate(loop, dt);
+    QDate date = dt.date();
+
+    if (date.year() != oldYear.year())
+    {
+      oldYear = date;
+      item->flag = 1;
+      item->tick = 1;
+      item->text = date.toString("yyyy");
+
+      xGrid.resize(xGrid.size() + 1);
+      xGrid[xGrid.size() - 1] = loop;
+    }
+    else {
+
     }
 
     dateList.append(item);

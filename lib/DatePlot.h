@@ -70,6 +70,7 @@ class DatePlot : public QWidget
     void getDailyDate();
     void getWeeklyDate();
     void getMonthlyDate();
+    void getSeasonDate();
     void getMinuteDate();
 
   private:

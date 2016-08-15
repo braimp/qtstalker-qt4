@@ -97,6 +97,7 @@ class ChartToolbar : public QToolBar
     void cmpsBtn1DClicked();
     void cmpsBtn1WClicked();
     void cmpsBtnMNClicked();
+    void cmpsBtn1SClicked();
     void slotSetButtonView();
     void compressionChanged(int);
 
@@ -141,7 +142,9 @@ class ChartToolbar : public QToolBar
     QAction *cmpsAct1W;
     QToolButton *cmpsBtn1W;
     QAction *cmpsActMN;
+    QAction *cmpsAct1S;
     QToolButton *cmpsBtnMN;
+    QToolButton *cmpsBtn1S;
     QToolButton *ps1Button;
     QToolButton *ps2Button;
     QToolButton *ps3Button;

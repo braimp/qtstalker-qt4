@@ -184,6 +184,14 @@ win32 {
 	LIBS += -lwsock32
   } else {
   TA_LIB_VERSION = $$system(ta-lib-config --version)
+
+    exists(/usr/local/include/ta-lib) {
+      INCLUDEPATH += /usr/local/include/ta-lib
+    }
+    exists(/usr/include/ta-lib) {
+      INCLUDEPATH += /usr/include/ta-lib
+    }
+
   contains(TA_LIB_VERSION, 0.3.0) {
     LIBS += -lta_abstract
     LIBS += -lta_common

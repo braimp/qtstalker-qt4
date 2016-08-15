@@ -130,6 +130,12 @@ ChartToolbar::ChartToolbar(QMainWindow *mw) : QToolBar("chartToolbar", mw )
   cmpsBtnMN->setToggleButton(TRUE);
   connect(cmpsBtnMN, SIGNAL(clicked()), this, SLOT(cmpsBtnMNClicked()));
 
+  cmpsBtn1S = new QToolButton(this);
+  cmpsAct1S = addWidget(cmpsBtn1S);
+  QToolTip::add(cmpsBtn1S, tr("1 Season Compression"));
+  cmpsBtn1S->setToggleButton(TRUE);
+  connect(cmpsBtn1S, SIGNAL(clicked()), this, SLOT(cmpsBtn1SClicked()));
+
   compressionChanged((BarData::BarLength) ti);
 
   addSeparator();
@@ -386,6 +392,13 @@ void ChartToolbar::slotSetButtonView()
   else cmpsActMN->setVisible(false);
   cmpsBtnMN->setText("MN");
 
+#if 0
+  rcfile.loadData(RcFile::ShowCmps1SBtn, tb);
+  if (tb) cmpsAct1S->setVisible(true);
+  else cmpsAct1S->setVisible(false);
+#endif
+  cmpsBtn1S->setText("1S");
+
   rcfile.loadData(RcFile::ShowBarSpSpinbox, tb);
   if (tb) pixelspaceAction->setVisible(true);
   else pixelspaceAction->setVisible(false);
@@ -622,6 +635,13 @@ void ChartToolbar::cmpsBtnMNClicked()
   emit signalBarLengthChanged((int)8);
 }
 
+void ChartToolbar::cmpsBtn1SClicked()
+{
+    compressionCombo->setCurrentItem((BarData::BarLength)9);
+    compressionChanged(9);
+    emit signalBarLengthChanged((int)9);
+}
+
 void ChartToolbar::compressionChanged(int compression)
 {
   compression == 0 ? cmpsBtn1M->setOn(TRUE) : cmpsBtn1M->setOn(FALSE);
@@ -637,6 +657,7 @@ void ChartToolbar::compressionChanged(int compression)
   compression == 6 ? cmpsBtn1D->setOn(TRUE) : cmpsBtn1D->setOn(FALSE);
   compression == 7 ? cmpsBtn1W->setOn(TRUE) : cmpsBtn1W->setOn(FALSE);
   compression == 8 ? cmpsBtnMN->setOn(TRUE) : cmpsBtnMN->setOn(FALSE);
+  compression == 9 ? cmpsBtn1S->setOn(TRUE) : cmpsBtn1S->setOn(FALSE);
 }
 
 void ChartToolbar::slotOrientationChanged(Qt::Orientation o)

@@ -535,14 +535,22 @@ void CSV::getTime (QString &d, QString &time)
   }
 
   QStringList l = QStringList::split(":", d, FALSE);
-  if (l.count() != 3)
+  if (!(l.count() == 3 || l.count() == 2))
     return;
 
   time = l[0] + l[1];
 
-  if (l[2].toInt() < 10)
-    time.append("0");
-  time.append(QString::number(l[2].toInt()));
+  if (l.count() == 2) {
+      time.append("00");
+  }
+  else {
+
+      if (l[2].toInt() < 10)
+          time.append("0");
+      time.append(QString::number(l[2].toInt()));
+  }
+
+  //qDebug("CSV::time.length() %d\n", time.length());
 }
 
 void CSV::getDate (QString &k, QString &d, Setting &r, QDate &date)

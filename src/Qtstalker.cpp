@@ -1182,7 +1182,8 @@ int main(int argc, char *argv[])
   app.installTranslator(&translator);
 
   QtstalkerApp *qtstalker = new QtstalkerApp();
-  qtstalker->setCaption("Qtstalker");
+  //qtstalker->setCaption("Qtstalker");
+  qtstalker->setCaption("asdfghj");
   qtstalker->show();
   app.setMainWidget(qtstalker);
 

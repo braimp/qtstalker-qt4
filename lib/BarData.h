@@ -67,7 +67,8 @@ class BarData
       Minute60,
       DailyBar,
       WeeklyBar,
-      MonthlyBar
+      MonthlyBar,
+      SeasonBar,
     };
 
     BarData(QString &);
